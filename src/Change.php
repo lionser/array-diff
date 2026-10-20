@@ -22,8 +22,8 @@ final class Change
     {
         return [
             'field' => $this->field,
-            'old' => $this->old,
-            'new' => $this->new,
+            'old'   => $this->old,
+            'new'   => $this->new,
         ];
     }
 }

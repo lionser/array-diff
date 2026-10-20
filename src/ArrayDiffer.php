@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace Lionser\ArrayDiff;
 
-use Generator;
-use InvalidArgumentException;
-
 final class ArrayDiffer
 {
     public function __construct(private readonly string $separator = '.')
     {
         if ($separator === '') {
-            throw new InvalidArgumentException('Separator must not be empty.');
+            throw new \InvalidArgumentException('Separator must not be empty.');
         }
     }
 
@@ -45,15 +42,15 @@ final class ArrayDiffer
      * @param array<array-key, mixed> $before
      * @param array<array-key, mixed> $after
      *
-     * @return Generator<int, Change>
+     * @return \Generator<int, Change>
      */
-    private function walk(array $before, array $after, string $path): Generator
+    private function walk(array $before, array $after, string $path): \Generator
     {
         foreach ($before + $after as $key => $_) {
             $field = $path === '' ? (string) $key : $path . $this->separator . $key;
 
             $hasBefore = array_key_exists($key, $before);
-            $hasAfter = array_key_exists($key, $after);
+            $hasAfter  = array_key_exists($key, $after);
 
             $old = $before[$key] ?? null;
             $new = $after[$key] ?? null;
